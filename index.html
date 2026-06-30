@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Gallery</title>
+    <link rel="icon" href="assets/icons/gallery.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Photo Gallery</p>
+          <h1>Organize your favorite moments beautifully.</h1>
+          <p class="hero-text">
+            Upload photos, search by name, and enjoy a polished gallery experience that stays saved on your device.
+          </p>
+        </div>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle theme">
+          🌙
+        </button>
+      </header>
+
+      <section class="controls-panel">
+        <div id="dropZone" class="drop-zone">
+          <input id="fileInput" type="file" multiple accept="image/*" hidden />
+          <div class="drop-zone__content">
+            <div class="drop-zone__icon">📷</div>
+            <p class="drop-zone__title">Drop your photos here</p>
+            <p class="drop-zone__hint">or</p>
+            <button id="browseButton" class="primary-button" type="button">Choose Files</button>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box" for="searchInput">
+            <span>🔎</span>
+            <input id="searchInput" type="text" placeholder="Search by file name" />
+          </label>
+
+          <div class="filter-group" role="group" aria-label="Gallery filters">
+            <button class="filter-button active" type="button" data-filter="all">All Images</button>
+            <button class="filter-button" type="button" data-filter="latest">Latest Uploads</button>
+            <button class="filter-button" type="button" data-filter="oldest">Oldest Uploads</button>
+          </div>
+
+          <button id="clearAllButton" class="danger-button" type="button">Delete All</button>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Gallery statistics">
+        <article class="stat-card">
+          <p class="stat-label">Total Images</p>
+          <h3 id="totalImagesStat">0</h3>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Storage Used</p>
+          <h3 id="storageStat">0 KB</h3>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Last Uploaded</p>
+          <h3 id="lastImageStat">No images yet</h3>
+        </article>
+      </section>
+
+      <section class="gallery-section">
+        <div class="section-heading">
+          <h2>Your Gallery</h2>
+          <p id="galleryCount">0 images</p>
+        </div>
+
+        <div id="loadingIndicator" class="loading-indicator" aria-live="polite">
+          <div class="spinner"></div>
+          <p>Processing images...</p>
+        </div>
+
+        <div id="galleryGrid" class="gallery-grid"></div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-state__icon">🖼️</div>
+          <h3>No photos yet</h3>
+          <p>Upload your first image to begin building your gallery.</p>
+        </div>
+      </section>
+    </div>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <button id="closeLightbox" class="lightbox__close" type="button" aria-label="Close preview">×</button>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-direction="-1" aria-label="Previous image">‹</button>
+      <img id="lightboxImage" class="lightbox__image" src="" alt="Preview" />
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-direction="1" aria-label="Next image">›</button>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
